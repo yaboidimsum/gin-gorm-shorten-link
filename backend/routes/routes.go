@@ -24,6 +24,7 @@ func SetupRoutes(r *gin.Engine) {
 	{
 		// Ingat: Frontend nanti POST ke http://localhost:8080/v1/shorten
 		v1.POST("/shorten", controllers.CreateShortLink)
+		v1.GET("/shortlink", controllers.GetAllShortLink)
 	}
 
 	// Endpoint Redirect (Public Access)

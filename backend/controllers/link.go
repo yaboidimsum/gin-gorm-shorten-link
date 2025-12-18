@@ -67,3 +67,21 @@ func RedirectToOriginal(c *gin.Context){
 
 	c.Redirect(http.StatusFound, link.OriginalURL)
 }
+
+func GetAllShortLink (c *gin.Context){
+	var link []models.Link
+
+	err:= config.DB.Find(&link).Error;
+
+	if err != nil{
+		c.JSON(http.StatusNotFound, gin.H{
+			"error":"there is no short link",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"message":"links are found",
+		"data": link,
+	})
+
+}
